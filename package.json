@@ -1,0 +1,34 @@
+{
+  "name": "helpshift-support-plugin",
+  "version": "2.0.0",
+  "description": "Plugin for integrating Helpshift's Support SDK into a Phonegap/Cordova project",
+  "cordova": {
+    "id": "helpshift-support-plugin",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "Helpshift",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "engines": [
+    {
+      "name": "cordova-android",
+      "version": ">=4.0.0"
+    },
+    {
+      "name": "cordova-ios",
+      "version": ">=3.8.0"
+    }
+  ],
+  "author": "Helpshift Technologies",
+  "license": "(c) Helpshift Technologies Pvt. Ltd."
+}

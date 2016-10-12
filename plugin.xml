@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns           =   "http://www.phonegap.com/ns/plugins/1.0"
+        id              =   "helpshift-cordova"
+        version         =   "1.0">
+
+    <name>Helpshift Plugin for Cordova</name>
+    <description>Plugin for integrating Helpshift's Support SDK into a Phonegap/Cordova project, not the official plugin</description>
+    <keywords>Helpshift</keywords>
+
+    <engines>
+      <engine name="cordova-android" version=">=4.0.0" />
+      <engine name="cordova-ios" version=">=3.8.0" />
+    </engines>
+
+    <js-module src="www/helpshift.js" name="Helpshift">
+        <clobbers target="HelpshiftPlugin" />
+    </js-module>
+
+    <platform name="android">
+        <source-file src="src/android/HelpshiftPlugin.java" target-dir="src/com/helpshift/android" />
+        <source-file src="src/android/HSJSONUtils.java" target-dir="src/com/helpshift/android" />
+        <source-file src="src/android/HelpshiftDelegate.java" target-dir="src/com/helpshift/android" />
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity
+            android:name="com.helpshift.support.activities.ParentActivity"
+            android:theme="@style/Helpshift.Theme.Activity" />
+            <activity
+            android:name="com.helpshift.support.HSReview"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Helpshift.Theme.Dialog" />
+            <service
+                android:name="com.helpshift.support.HSService"
+                android:label="Helpshift Service" >
+            </service>
+            <service
+                android:name="com.helpshift.support.HSRetryService"
+                android:label="Helpshift Service" >
+            </service>
+        </config-file>
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="HelpshiftPlugin" >
+                <param name="android-package" value="com.helpshift.android.HelpshiftPlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <framework src="src/android/nativeSDK" custom="true" />
+
+    </platform>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="HelpshiftPlugin">
+                <param name="ios-package" value="HelpshiftPlugin" />
+                 <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/HelpshiftPlugin.h" target-dir="HelpshiftPluginIos"/>
+        <source-file src="src/ios/HelpshiftPlugin.m" target-dir="HelpshiftPluginIos"/>
+
+        <header-file src="src/ios/nativeSDK/HelpshiftCore.h" target-dir="HelpshiftPluginIos"/>
+        <header-file src="src/ios/nativeSDK/HelpshiftSupport.h" target-dir="HelpshiftPluginIos"/>
+        <header-file src="src/ios/nativeSDK/Helpshift.h" target-dir="HelpshiftPluginIos"/>
+
+        <resource-file src="src/ios/nativeSDK/HelpshiftAssetCatalog.xcassets" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSThemes" target-dir="HelpshiftPluginIos"/>
+
+        <resource-file src="src/ios/nativeSDK/HSLocalization/ar.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/ca.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/cs.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/da-DK.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/de.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/el.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/en.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/es.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/fi.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/fr.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/he.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/hr.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/hu.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/id.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/it.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/ja.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/ko.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/ms.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/nb-NO.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/nl.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/pl.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/pt.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/ro.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/ru.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/sk.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/sl.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/sv.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/th.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/tr.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/uk.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/vi.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/zh-Hans.lproj" target-dir="HelpshiftPluginIos"/>
+        <resource-file src="src/ios/nativeSDK/HSLocalization/zh-Hant.lproj" target-dir="HelpshiftPluginIos"/>
+
+        <framework src="CoreGraphics.framework"/>
+        <framework src="QuartzCore.framework"/>
+        <framework src="CoreText.framework"/>
+        <framework src="SystemConfiguration.framework"/>
+        <framework src="CoreTelephony.framework"/>
+        <framework src="UIKit.framework"/>
+        <framework src="libsqlite3.tbd"/>
+        <framework src="libz.tbd"/>
+        <framework src="Security.framework"/>
+        <framework src="QuickLook"/>
+        <framework src="CoreSpotlight.framework"/>
+        <framework src="MobileCoreServices.framework"/>
+
+        <source-file src="src/ios/nativeSDK/libSupport.a" target-dir="HelpshiftPluginIos" framework="true"/>"
+    </platform>
+</plugin>
